@@ -1,12 +1,7 @@
 ---
 bootstrap:
-  # This is a template bootstrap CLI file that will need to be completed. For a more complete example look at
-  # https://github.com/cognitedata/inso-bootstrap-cli/blob/main/configs/config-deploy-example-v2.yml
 
     features:
-    # v2 adding as features, available as cli paramaters only atm (v1)
-    # allowed values are parsed case-insensitive: [true|yes|YES|..] or [false|no|NO|..]
-    # not as strings in quotes "yes" or 'yes'
 
     # default and recommended is: false
     #   in CDF 2022 support for this special-groups is not necessary anymore
@@ -31,26 +26,26 @@ bootstrap:
 
     # default and recommended is: cdf
     #   supports empty-string ''
-        group-prefix: cdf
+    #    group-prefix: cdf
 
     # default is: dataset
     #  recommended is shorter 'ds' or minimal ''
     #   supports empty-string ''
-        dataset-suffix: ''
+        dataset-suffix: ds
 
     # default is: rawdb
     #  recommended is shorter 'db' or minimal ''
-        rawdb-suffix: ''
+        rawdb-suffix: db
 
     # default is" ['state']
     #   meant for separating the statestores from extractors from ingested data
     #   recommended: keep it or []
     #   more rawdbs can be configured at a later stage
     #   supports empty list [] for no additional variants
-        rawdb-additional-variants:
+    #    rawdb-additional-variants:
       # provide more than one rawdb per ns-nodes
       # atm (v1) hardcoded is one additional rawdb
-            - state
+    #        - state
 
     # Mapping between IDP (Azure Active Directory) groups and CDF groups.
     idp-cdf-mappings:
@@ -60,25 +55,48 @@ bootstrap:
               - cdf-group: cdf:root
                 idp-source-id: 91575f7b-469a-4f52-9874-b1a301f07c69
                 idp-source-name: cdf-admin
-              - cdf-group: cdf:all:owner
+              - cdf-group: cdf:all:owner #cdf:all:owner
                 idp-source-id: e529dfc6-6c54-400c-b29d-cadd9115ec8b # for the AAD Group to be matched to cdf-group
-                idp-source-name: cdf-read-write-all # i.e. bootcamp-01-test-all-owner
-              - cdf-group: cdf:all:read
+                idp-source-name: cdf-read-write-all #CDF_SLBPDF_ALLPROJECTS_OWNER
+              - cdf-group: cdf:all:read # cdf:all:viewer
                 idp-source-id: 330978ef-9bbe-40fe-942e-3c4dcc43e650 # for the AAD Group to be matched to cdf-group
-                idp-source-name: cdf-read-all # i.e. bootcamp-01-test-all-read
+                idp-source-name: cdf-read-all # CDF_SLBPDF_ALLPROJECTS_VIEWER
 
 
     namespaces:
         # Typical config will have a namespace for data sources ("src") and a namespace for use cases ("uc")
         - ns-name: src #To scope 3rd party sources
-          description: Global Data source
-
+          description: Customer source-systems
           # Node names will normally follow src:001:srcname or uc:001:usecasename naming convention
           ns-nodes:
-            - node-name: src:all:sap
-              description: Test Source 01
+            - node-name: src:001:im
+              description: Sources 001; from IM
+              external-id: src:001:im
+            - node-name: src:001:loc
+              description: Sources 002; from local
+             # external-id will be auto generated in this case
 
+        - ns-name: in
+          description: End user data-input provided through deployed CDF solutions
+          ns-nodes:
+            - node-name: in:001:trade
+              description: Description about user inputs related to name
+              #external_id: in:001:trade
 
+        - ns-name: uc
+          description: Use Cases representing the data-products
+          ns-nodes:
+            - node-name: uc:001:demand
+              description: Use Case 001; Demand Side
+              metadata:
+                created: 220427
+                generated: by cdf-config-hub script
+              shared-access:
+                read:
+                  - node-name: src:001:im
+                  - node-name: src:001:loc
+                owner:
+                  - node-name: in:001:trade
 # de-facto standards for CDF CogniteClient and logger configuration.
 # Following the same parameter structure as the 'Cognite Python Extractor-Utilities'
 # and 'Cognite DB Extractor' configuration.
