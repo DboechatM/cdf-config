@@ -16,7 +16,6 @@ jobs:
                 include:
                     - environment: test
                       CDF_CLUSTER: westeurope-1
-                      # CDF Project name
                       CDF_PROJECT: slb-test
                       # Azure AD tenant id
                       IDP_TENANT: 45472a8e-6a12-4531-97d8-1f38f5d553a4
