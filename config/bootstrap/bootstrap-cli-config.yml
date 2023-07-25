@@ -58,13 +58,13 @@ bootstrap:
         - cdf-project: slb-test # i.e. bootcamp-01-test
           mappings:
               - cdf-group: cdf:root
-                idp-source-id: 2500925158349664
+                idp-source-id: 91575f7b-469a-4f52-9874-b1a301f07c69
                 idp-source-name: cdf-admin
               - cdf-group: cdf:all:owner
-                idp-source-id: 1388124441921564 # for the AAD Group to be matched to cdf-group
+                idp-source-id: e529dfc6-6c54-400c-b29d-cadd9115ec8b # for the AAD Group to be matched to cdf-group
                 idp-source-name: cdf-read-write-all # i.e. bootcamp-01-test-all-owner
               - cdf-group: cdf:all:read
-                idp-source-id: 3516423947293731 # for the AAD Group to be matched to cdf-group
+                idp-source-id: 330978ef-9bbe-40fe-942e-3c4dcc43e650 # for the AAD Group to be matched to cdf-group
                 idp-source-name: cdf-read-all # i.e. bootcamp-01-test-all-read
 
 
