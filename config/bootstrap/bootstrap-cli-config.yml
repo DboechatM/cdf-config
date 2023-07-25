@@ -75,9 +75,9 @@ bootstrap:
 
           # Node names will normally follow src:001:srcname or uc:001:usecasename naming convention
           ns-nodes:
-            - node-name: src:001
+            - node-name: src
               description: Source 01 data from SAP
-              external-id: src:001:sap
+              external-id: src:sap
 
 
 # de-facto standards for CDF CogniteClient and logger configuration.
