@@ -15,8 +15,11 @@ jobs:
                 environment: [test]
                 include:
                     - environment: test
+                      # CDF cluster, like bluefield, greenfield or westeurope-1
                       CDF_CLUSTER: westeurope-1
+                      # CDF Project name
                       CDF_PROJECT: slb-test
+                      # Azure AD tenant id
                       IDP_TENANT: 45472a8e-6a12-4531-97d8-1f38f5d553a4
 
         environment: ${{ matrix.environment}}
@@ -35,4 +38,7 @@ jobs:
                   BOOTSTRAP_IDP_SCOPES: ${{ env.CDF_HOST }}.default
 
               with:
+                  # Path to Bootstrap CLI configuration file
                   config_file: ./config/bootstrap/bootstrap-cli-config.yml
+            # "yes"|"no" deploy with special groups and aad_mappings
+            #with_special_groups: "yes"
