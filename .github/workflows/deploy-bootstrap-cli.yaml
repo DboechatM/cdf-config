@@ -4,8 +4,7 @@ name: deploy-bootstrap-cli
 on:
     push:
         branches:
-            #- main
-            - none
+            - main
 
 jobs:
     bootstrap_cdf:
@@ -17,18 +16,11 @@ jobs:
                 include:
                     - environment: test
                       # CDF cluster, like bluefield, greenfield or westeurope-1
-                      CDF_CLUSTER: [CDF cluster]
+                      CDF_CLUSTER: westeurope-1
                       # CDF Project name
-                      CDF_PROJECT: [CDF project]
+                      CDF_PROJECT: slb-test
                       # Azure AD tenant id
-                      IDP_TENANT: [AAD tenant id]
-                    - environment: prod
-                      # CDF cluster, like bluefield, greenfield or westeurope-1
-                      CDF_CLUSTER: [CDF cluster]
-                      # CDF Project name
-                      CDF_PROJECT: [CDF project]
-                      # Azure AD tenant id
-                      IDP_TENANT: [AAD tenant id]
+                      IDP_TENANT: 45472a8e-6a12-4531-97d8-1f38f5d553a4
 
         environment: ${{ matrix.environment}}
         env:
