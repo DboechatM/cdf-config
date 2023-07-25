@@ -36,11 +36,11 @@ bootstrap:
     # default is: dataset
     #  recommended is shorter 'ds' or minimal ''
     #   supports empty-string ''
-        dataset-suffix: ds
+        dataset-suffix: ''
 
     # default is: rawdb
     #  recommended is shorter 'db' or minimal ''
-        rawdb-suffix: db
+        rawdb-suffix: ''
 
     # default is" ['state']
     #   meant for separating the statestores from extractors from ingested data
@@ -75,9 +75,9 @@ bootstrap:
 
           # Node names will normally follow src:001:srcname or uc:001:usecasename naming convention
           ns-nodes:
-            - node-name: src
-              description: Source 01 data from SAP
-              external-id: src:sap
+            - node-name: src:all
+              description: Test Source 01
+              external-id: src:all
 
 
 # de-facto standards for CDF CogniteClient and logger configuration.
