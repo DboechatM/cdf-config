@@ -77,7 +77,6 @@ bootstrap:
           ns-nodes:
             - node-name: src:all
               description: Test Source 01
-              external-id: src:all
 
 
 # de-facto standards for CDF CogniteClient and logger configuration.
